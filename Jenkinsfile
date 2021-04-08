@@ -1,15 +1,24 @@
-pipeline{
- agent {
-  docker {image 'authserver_app'}
- }
- stages{
-   stage('Build image'){
+pipeline {
+  agent any
 
-   }
-   stage('Test'){
-     steps {
-      sh 'echo hello'
+  stages {
+    stage('Build') {
+      steps{
+         echo "build"
+      }
+    }
+    stage ('Test'){
+      steps{
+         echo "test"
      }
-   }
- },
+    }
+
+    stage ('Deploy'){
+      steps{
+
+        echo 'Deploying'
+      }
+    }
+
+  }
 }
