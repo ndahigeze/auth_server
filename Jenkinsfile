@@ -9,11 +9,7 @@ pipeline {
 
   stages {
     stage('build and push docker image') {
-        agent {
-                node {
-                    label 'master'
-                }
-            }
+
             steps {
                 sh  "docker build . -f Dockerfile -t ${env.DOCKER_REGISTRY}:${env.GIT_COMMIT}"
             }
