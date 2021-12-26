@@ -11,7 +11,7 @@ pipeline {
     stage('build and push docker image') {
             steps {
                  sh  "docker build . -f Dockerfile -t ${env.DOCKER_REGISTRY}:${env.GIT_COMMIT}"
-                 sh  'cat ~/password.txt | docker login --username ndahigeze --password-stdin'
+                 sh  "cat ~/password.txt | docker login --username ndahigeze --password-stdin"
                  sh "docker push ${env.DOCKER_REGISTRY}:${env.GIT_COMMIT}"
                  cleanWs()
             }

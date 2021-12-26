@@ -14,6 +14,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import environ
 
+from pathlib import Path
+import os
+
+from pathlib import Path
+import os
+import sys
 env = environ.Env()
 # reading .env file
 environ.Env.read_env()
@@ -51,6 +57,8 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'accounts',
     'corsheaders',
+    'cryptography',
+    'encrypted_id',
 ]
 
 
@@ -72,7 +80,7 @@ ROOT_URLCONF = 'authserver.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -97,7 +105,7 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
 'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': env('AUTH_DB_NAME'),
         'USER': env('AUTH_DB_USER'),
         'PASSWORD': env('AUTH_DB_PASSWORD'),
@@ -105,6 +113,7 @@ DATABASES = {
         'PORT': env('AUTH_DB_PORT'),
     }
 }
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
 # Password validation
@@ -143,4 +152,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static_files")
