@@ -15,3 +15,16 @@ class User(AbstractUser,MetaData,EncryptedIDModel):
 
     class Meta:
         db_table = "users"
+
+    def find_by_email(email):
+
+        try:
+            return User.objects.get(email=email, deleted_status=False)
+        except Exception as e:
+            return None
+
+    def find_by_uuid(uuid):
+        try:
+            return User.objects.get(uuid=uuid, deleted_status=False)
+        except Exception as e:
+            return None
