@@ -28,3 +28,4 @@ class User(AbstractUser,MetaData,EncryptedIDModel):
             return User.objects.get(uuid=uuid, deleted_status=False)
         except Exception as e:
             return None
+

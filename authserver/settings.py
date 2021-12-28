@@ -44,7 +44,7 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL='accounts.User'
 LOGIN_URL='/admin/login/'
-
+OAUTH2_PROVIDER_APPLICATION_MODEL='accounts.OauthApplication'
 # Application definition
 
 INSTALLED_APPS = [
